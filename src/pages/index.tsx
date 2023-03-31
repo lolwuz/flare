@@ -128,7 +128,7 @@ const Home: NextPage = () => {
             >
               <div className="grow">
                 <h3 className="mb-6 text-2xl font-bold text-gray-100">
-                  FLARE'S SANCTUARY
+                  FLARE&apos;S SANCTUARY
                 </h3>
               </div>
 
