@@ -165,7 +165,7 @@ const Home: NextPage = () => {
 
             <hr className="border border-zinc-800" />
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
                 <h2 className="mb-3 mt-6 text-xl font-semibold text-gray-300">
                   MEDIA
