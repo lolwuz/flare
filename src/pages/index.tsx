@@ -64,7 +64,7 @@ const Home: NextPage = () => {
               {servers.map((server) => (
                 <div
                   key={server.id}
-                  className="rounded-xl bg-zinc-600/20 p-6 text-white backdrop-blur-sm transition-colors hover:bg-zinc-600/40"
+                  className="col-span-2 rounded-xl bg-zinc-600/20 p-6 text-white backdrop-blur-sm transition-colors hover:bg-zinc-600/40"
                 >
                   <div className="flex">
                     <div className="grow">
@@ -97,7 +97,7 @@ const Home: NextPage = () => {
                   </div>
 
                   {server.map && (
-                    <div className="mt-4 flex justify-end">
+                    <div className="mt-4 flex justify-end gap-3">
                       <a
                         href={server.map}
                         className="flex gap-3 rounded-lg border border-zinc-800 bg-cyan-900 p-3 text-sm font-bold"
@@ -110,6 +110,17 @@ const Home: NextPage = () => {
 
                         <div className="grow">VIEW MAP</div>
                       </a>
+
+                      <Link
+                        href="/locations"
+                        className="flex gap-3 rounded-lg border border-zinc-800 bg-cyan-900 p-3 text-sm font-bold"
+                      >
+                        <div className="my-auto">
+                          <MapIcon className="h-4 w-4" />
+                        </div>
+
+                        <div className="grow">LOCATIONS</div>
+                      </Link>
                     </div>
                   )}
                 </div>
