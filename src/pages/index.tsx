@@ -1,9 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { MapIcon, ServerIcon } from "@heroicons/react/24/solid";
-import { FocusEvent } from "react";
+import { FocusEvent, useEffect, useState } from "react";
+
+interface IBibleQuote {
+  details: {
+    text: string;
+    reference: string;
+    version: string;
+    verseurl: string;
+  };
+}
 
 const servers = [
   {
@@ -17,9 +27,27 @@ const servers = [
 ];
 
 const Home: NextPage = () => {
+  const [quote, setQuote] = useState<IBibleQuote | null>(null);
+
+  useEffect(() => {
+    const getRandomQuote = async () => {
+      const response = await fetch(
+        "https://beta.ourmanna.com/api/v1/get/?format=json"
+      );
+      const data: { notice: string; verse: IBibleQuote } =
+        await response.json();
+
+      setQuote(data.verse);
+    };
+
+    void getRandomQuote();
+  }, []);
+
   const handleClick = (event: FocusEvent<HTMLInputElement>) => {
     event?.target?.select();
   };
+
+  console.log({ quote });
 
   return (
     <>
@@ -34,7 +62,7 @@ const Home: NextPage = () => {
           <div className="mx-auto max-w-screen-lg">
             <div className="mb-6 flex gap-6">
               <div className="grow">
-                <h1 className="my-6 text-2xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-5xl">
+                <h1 className="my-3 text-2xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-5xl">
                   <span className="bg-gradient-to-r from-violet-500 to-purple-500 bg-clip-text text-transparent">
                     Dylans
                   </span>{" "}
@@ -53,6 +81,14 @@ const Home: NextPage = () => {
                 </a>
               </div>
             </div>
+
+            <p className="text-lg font-normal italic text-white">
+              {quote?.details.text}
+            </p>
+
+            <p className="mb-6 mt-3 text-lg font-bold text-purple-500">
+              {quote?.details.reference}
+            </p>
 
             <hr className="border border-zinc-800" />
 
