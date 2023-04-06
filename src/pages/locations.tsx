@@ -10,7 +10,7 @@ const locations = [
   },
   {
     id: 1,
-    url: "https://map.gustav-gaming.nl/?worldname=shakirasseed&mapname=surface&zoom=6&x=-2376&y=64&z=-381",
+    url: "https://map.gustav-gaming.nl/?worldname=shakirasseed&mapname=surface&zoom=5&x=-2376&y=64&z=-381",
     name: "Huis",
     builders: "Dylan",
   },
