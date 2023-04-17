@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { type NextPage } from "next";
+import { GetStaticProps, type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,28 +26,10 @@ const servers = [
   },
 ];
 
-const Home: NextPage = () => {
-  const [quote, setQuote] = useState<IBibleQuote | null>(null);
-
-  useEffect(() => {
-    const getRandomQuote = async () => {
-      const response = await fetch(
-        "https://beta.ourmanna.com/api/v1/get/?format=json"
-      );
-      const data: { notice: string; verse: IBibleQuote } =
-        await response.json();
-
-      setQuote(data.verse);
-    };
-
-    void getRandomQuote();
-  }, []);
-
+const Home: NextPage<{ quote: IBibleQuote }> = ({ quote }) => {
   const handleClick = (event: FocusEvent<HTMLInputElement>) => {
     event?.target?.select();
   };
-
-  console.log({ quote });
 
   return (
     <>
@@ -240,6 +222,20 @@ const Home: NextPage = () => {
       </main>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await fetch(
+    "https://beta.ourmanna.com/api/v1/get/?format=json"
+  );
+  const data: { notice: string; verse: IBibleQuote } = await response.json();
+
+  return {
+    props: {
+      quote: data.verse,
+    }, // will be passed to the page component as props
+    revalidate: 60 * 60 * 6,
+  };
 };
 
 export default Home;
