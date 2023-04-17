@@ -32,6 +32,12 @@ const locations = [
     name: "Daar boven op die Berg!",
     builders: "Woont Sven",
   },
+  {
+    id: 5,
+    url: "https://map.gustav-gaming.nl/?worldname=shakirasseed&mapname=surface&zoom=4&x=-1963&y=64&z=381",
+    name: "Iron Island",
+    builders: "Maurits",
+  },
 ];
 
 const Locations: NextPage = () => {
