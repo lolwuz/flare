@@ -147,6 +147,19 @@ const Home: NextPage<{ quote: IBibleQuote }> = ({ quote }) => {
 
             <hr className="border border-zinc-800" />
 
+            <h2 className="mb-3 mt-6 text-xl font-semibold text-gray-300">
+              BAKHMUT MAP
+            </h2>
+
+            <div className="mb-6 overflow-hidden rounded-lg">
+              <iframe
+                src="https://deepstatemap.live/en#13/48.5978/37.9793"
+                className="h-96 w-full"
+              />
+            </div>
+
+            <hr className="border border-zinc-800" />
+
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
                 <h2 className="mb-3 mt-6 text-xl font-semibold text-gray-300">
